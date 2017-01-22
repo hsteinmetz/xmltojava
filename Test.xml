@@ -1,0 +1,8 @@
+<class name="Test" access="public" static="false" abstract="false">
+	<method name="test" return="void" access="public" static="false" abstract="false">
+		<param name="lal" type="String"></param>
+	</method>
+	<method name="run" return="String" access="private" static="true" abstract="false">
+
+	</method>
+</class>
