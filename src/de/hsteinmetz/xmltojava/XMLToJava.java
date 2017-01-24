@@ -51,9 +51,7 @@ public class XMLToJava {
 				Node clazz = classes.item(i);
 
 				NodeList subList = clazz.getChildNodes();
-
-				System.out.println("Class elements: " + subList.getLength());
-
+				
 				for (int j = 0; j < subList.getLength(); j++) {
 					Node current = subList.item(j);
 					tabs += "\t";
