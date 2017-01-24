@@ -12,6 +12,7 @@ import de.hsteinmetz.xmltojava.codegen.ClassGenerator;
 import de.hsteinmetz.xmltojava.codegen.CodeGenerator;
 import de.hsteinmetz.xmltojava.codegen.models.Class;
 import de.hsteinmetz.xmltojava.codegen.parser.ClassParser;
+import de.hsteinmetz.xmltojava.codegen.parser.FieldParser;
 import de.hsteinmetz.xmltojava.codegen.parser.MethodParser;
 import de.hsteinmetz.xmltojava.xmlreader.XMLReader;
 
@@ -31,6 +32,8 @@ public class XMLToJava {
 		ClassParser cp = new ClassParser();
 		CodeGenerator codeGen = new CodeGenerator();
 		ClassGenerator classGen = new ClassGenerator();
+		
+		String tabs = "";
 
 		for (int i = 0; i < classes.getLength(); i++) {
 			Class c = cp.parseClass(classes.item(i));
@@ -43,6 +46,7 @@ public class XMLToJava {
 				out = new BufferedWriter(new FileWriter(new File(outputFile)));
 				out.write(classGen.generateClass(c));
 				out.newLine();
+				out.newLine();
 
 				Node clazz = classes.item(i);
 
@@ -51,11 +55,21 @@ public class XMLToJava {
 				System.out.println("Class elements: " + subList.getLength());
 
 				for (int j = 0; j < subList.getLength(); j++) {
-					if (subList.item(j).getNodeName().equals("method")) {
-						System.out.println("Found method");
-						out.write(codeGen.generateMethod(
+					Node current = subList.item(j);
+					tabs += "\t";
+					
+					if (current.getNodeName().equals("method")) {
+						out.write(tabs + codeGen.generateMethod(
 								MethodParser.parseMethod(subList.item(j))));
 						out.newLine();
+						out.newLine();
+						tabs = "";
+					} else if(current.getNodeName().equals("field")) {
+						out.write(tabs + codeGen.generateField(FieldParser.parseField(current)));
+						
+						out.newLine();
+						out.newLine();
+						tabs = "";
 					}
 				}
 

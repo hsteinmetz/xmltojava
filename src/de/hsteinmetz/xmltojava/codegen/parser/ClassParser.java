@@ -5,6 +5,11 @@ import org.w3c.dom.Node;
 
 public class ClassParser {
 
+	static boolean defStatic = false;
+	static boolean defAbstr = false;
+	static boolean defFinal = false;
+	static String defAccess = "public";
+	
 	public static de.hsteinmetz.xmltojava.codegen.models.Class parseClass(
 			Node classNode) {
 
@@ -12,11 +17,11 @@ public class ClassParser {
 
 		String className = elem.getAttribute("name");
 
-		String classAcMod = elem.getAttribute("access");
+		String classAcMod = elem.hasAttribute("access") ? elem.getAttribute("access") : defAccess;
 
-		boolean stat = Boolean.parseBoolean(elem.getAttribute("static"));
-		boolean abstr = Boolean.parseBoolean(elem.getAttribute("abstract"));
-		boolean finaL = Boolean.parseBoolean(elem.getAttribute("final"));
+		boolean stat = elem.hasAttribute("static") ? Boolean.parseBoolean(elem.getAttribute("static")) : defStatic;
+		boolean abstr = elem.hasAttribute("abstract") ? Boolean.parseBoolean(elem.getAttribute("abstract")): defAbstr;
+		boolean finaL = elem.hasAttribute("final") ? Boolean.parseBoolean(elem.getAttribute("final")) : defFinal;
 
 		return new de.hsteinmetz.xmltojava.codegen.models.Class(className,
 				classAcMod, finaL, stat, abstr);

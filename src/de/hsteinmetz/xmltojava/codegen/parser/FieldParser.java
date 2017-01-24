@@ -7,14 +7,18 @@ import de.hsteinmetz.xmltojava.codegen.models.Field;
 
 public class FieldParser {
 
-	public Field parseField(Node fieldNode) {
+	static boolean defStatic = false;
+	static boolean defFinal = false;
+	static String defAccess = "private";
+	
+	public static Field parseField(Node fieldNode) {
 		Element field = (Element) fieldNode;
 		
 		String name = field.getAttribute("name");
 		String type = field.getAttribute("type");
-		boolean stat = Boolean.parseBoolean(field.getAttribute("static"));
-		boolean fin = Boolean.parseBoolean(field.getAttribute("final"));
-		String access = field.getAttribute("access");
+		boolean stat = field.hasAttribute("static") ? Boolean.parseBoolean(field.getAttribute("static")) : defStatic;
+		boolean fin = field.hasAttribute("final") ? Boolean.parseBoolean(field.getAttribute("final")) : defFinal;
+		String access = field.hasAttribute("access") ? field.getAttribute("access") : defAccess;
 		String initialValue = field.getAttribute("value");
 		
 		
