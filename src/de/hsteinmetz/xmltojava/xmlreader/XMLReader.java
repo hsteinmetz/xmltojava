@@ -17,6 +17,7 @@ public class XMLReader {
 	DocumentBuilder builder;
 	Document doc;
 	NodeList classes;
+	NodeList interfaces;
 
 	public XMLReader(File input) {
 		factory = DocumentBuilderFactory.newInstance();
@@ -42,6 +43,11 @@ public class XMLReader {
 	public NodeList getClasses() {
 		classes = doc.getElementsByTagName("class");
 		return classes;
+	}
+
+	public NodeList getInterfaces() {
+		interfaces = doc.getElementsByTagName("interface");
+		return interfaces;
 	}
 
 }

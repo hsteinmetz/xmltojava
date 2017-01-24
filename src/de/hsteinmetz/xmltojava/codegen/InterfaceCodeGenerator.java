@@ -4,7 +4,7 @@ import de.hsteinmetz.xmltojava.codegen.models.Field;
 import de.hsteinmetz.xmltojava.codegen.models.Method;
 import de.hsteinmetz.xmltojava.codegen.models.MethodParam;
 
-public class CodeGenerator {
+public class InterfaceCodeGenerator {
 
 	/**
 	 * 
@@ -106,7 +106,7 @@ public class CodeGenerator {
 					buf.append(", ");
 			}
 
-		buf.append(") { }");
+		buf.append(");");
 
 		return buf.toString();
 	}
@@ -115,5 +115,5 @@ public class CodeGenerator {
 		return generateMethod(m.getName(), m.getAccessModif(), m.getType(),
 				m.isAbstr(), m.isStat(), m.getParams());
 	}
-
+	
 }

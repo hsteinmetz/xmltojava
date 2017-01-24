@@ -15,4 +15,10 @@
 
 	</method>
 </class>
+
+<interface name="ITest">
+	<method name="itestmethod" return="void">
+	
+	</method>
+</interface>
 </classes>
