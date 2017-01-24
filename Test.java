@@ -1,4 +1,4 @@
 public class Test {
-public void test( test,  test,  test) { }
-private static String run( run) { }
+public void test(String lal) { }
+private static String run() { }
 }

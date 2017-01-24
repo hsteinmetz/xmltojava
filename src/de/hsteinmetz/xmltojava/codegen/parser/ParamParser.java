@@ -12,11 +12,13 @@ public class ParamParser {
 		MethodParam[] params = new MethodParam[0];
 
 		for (int i = 0; i < childNodes.getLength(); i++) {
-			Element elem = (Element) childNodes;
-			MethodParam p = new MethodParam(elem.getAttribute("name"),
-					elem.getAttribute("type"));
-
-			params = ArrayUtils.add(params, p);
+			if(childNodes.item(i) instanceof Element) {
+				Element elem = (Element) childNodes.item(i);
+				MethodParam p = new MethodParam(elem.getAttribute("name"),
+						elem.getAttribute("type"));
+				
+				params = ArrayUtils.add(params, p);
+			}
 		}
 
 		return params;

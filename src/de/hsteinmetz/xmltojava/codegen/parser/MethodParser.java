@@ -21,8 +21,8 @@ public class MethodParser {
 		MethodParam[] params = new MethodParam[0];
 
 		if (method.getChildNodes().getLength() > 0)
-			params = ParamParser.parseParams(elem.getChildNodes());
-
+			params = ParamParser.parseParams(elem.getElementsByTagName("param"));
+		
 		return new Method(name, type, acmod, abstr, stat, params);
 	}
 
