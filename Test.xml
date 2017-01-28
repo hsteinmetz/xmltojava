@@ -1,6 +1,7 @@
 <classes>
 // Long form
 <class name="Test" access="public" static="false" abstract="false">
+	<field name="hey" type="String" />
 	<method name="test" return="void" access="public" static="false" abstract="false">
 		<param name="lal" type="String"></param>
 	</method>

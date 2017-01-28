@@ -20,8 +20,8 @@ public class ClassCodeGenerator {
 	 *            Final field or not
 	 * @return Java code line for a field
 	 */
-	public String generateField(String name, String accessModif, String type,
-			boolean stat, String initialValue, boolean constant) {
+	public String generateField(String name, String accessModif, String type, boolean stat, String initialValue,
+			boolean constant) {
 		StringBuffer buf = new StringBuffer();
 
 		buf.append(accessModif + " ");
@@ -35,8 +35,12 @@ public class ClassCodeGenerator {
 
 		buf.append(type + " ");
 		buf.append(name);
-		buf.append(" = ");
-		buf.append(initialValue);
+		
+		if (initialValue != null) {
+			buf.append(" = ");
+			buf.append(initialValue);
+		}
+		
 		buf.append(";");
 
 		return buf.toString();
@@ -57,14 +61,13 @@ public class ClassCodeGenerator {
 	 *            Final field or not
 	 * @return Java field code line
 	 */
-	public String generateField(String name, String accessModif, String type,
-			boolean stat, boolean constant) {
+	public String generateField(String name, String accessModif, String type, boolean stat, boolean constant) {
 		return generateField(name, accessModif, type, stat, "null", constant);
 	}
 
 	public String generateField(Field f) {
-		return generateField(f.getName(), f.getAccessModif(), f.getType(),
-				f.isStat(), f.getInitialValue(), f.isFinaL());
+		return generateField(f.getName(), f.getAccessModif(), f.getType(), f.isStat(), f.getInitialValue(),
+				f.isFinaL());
 	}
 
 	/**
@@ -83,8 +86,7 @@ public class ClassCodeGenerator {
 	 *            Method params
 	 * @return Java method code line
 	 */
-	public String generateMethod(String name, String accessModif,
-			String returnType, boolean abstr, boolean stat,
+	public String generateMethod(String name, String accessModif, String returnType, boolean abstr, boolean stat,
 			MethodParam[] params) {
 		StringBuffer buf = new StringBuffer();
 
@@ -112,8 +114,7 @@ public class ClassCodeGenerator {
 	}
 
 	public String generateMethod(Method m) {
-		return generateMethod(m.getName(), m.getAccessModif(), m.getType(),
-				m.isAbstr(), m.isStat(), m.getParams());
+		return generateMethod(m.getName(), m.getAccessModif(), m.getType(), m.isAbstr(), m.isStat(), m.getParams());
 	}
 
 }

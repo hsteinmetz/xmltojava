@@ -19,7 +19,7 @@ public class FieldParser {
 		boolean stat = field.hasAttribute("static") ? Boolean.parseBoolean(field.getAttribute("static")) : defStatic;
 		boolean fin = field.hasAttribute("final") ? Boolean.parseBoolean(field.getAttribute("final")) : defFinal;
 		String access = field.hasAttribute("access") ? field.getAttribute("access") : defAccess;
-		String initialValue = field.getAttribute("value");
+		String initialValue = field.hasAttribute("value") ? field.getAttribute("value") : null;
 		
 		
 		return new Field(name, access, type, initialValue, stat, fin);
