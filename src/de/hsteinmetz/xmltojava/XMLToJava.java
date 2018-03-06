@@ -67,7 +67,7 @@ public class XMLToJava {
 				
 				for (int j = 0; j < subList.getLength(); j++) {
 					Node current = subList.item(j);
-					tabs = tabs + "     ";
+					tabs = tabs + "\t";
 					
 					if (current.getNodeName().equals("method")) {
 						out.write(tabs + codeGen.generateMethod(
@@ -117,7 +117,7 @@ public class XMLToJava {
 				
 				for (int j = 0; j < subList.getLength(); j++) {
 					Node current = subList.item(j);
-					tabs = tabs + "     ";
+					tabs = tabs + "\t";
 					
 					if (current.getNodeName().equals("method")) {
 						out.write(tabs + interCodeGen.generateMethod(
